@@ -1,0 +1,23 @@
+.btn-primary{
+    background-color: orange !important;
+    color: black;
+    border: none;
+
+}
+
+.page-link{
+    background-color: orange !important;
+    color: black;
+}
+
+.page-link:hover{
+    color: white;
+}
+
+.navbar{
+    background-color: orange !important;
+}
+
+.nav-link:hover{
+    color: white;
+}

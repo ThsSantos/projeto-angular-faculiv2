@@ -4,13 +4,19 @@ $urlRouterProvider.otherwise("/listAnime");
 
     $stateProvider.state("listAnime", {
         url: "/listAnime",
-        templateUrl: "views/listAnime.html",
+        templateUrl: "views/topListAnime.html",
         controller: "AnimeController"
     })
         .state("listManga", {
-            url: "/listManga",
-            templateUrl: "views/listManga",
-            controller: "listMangaController"
+            url: "/topListManga",
+            templateUrl: "views/topListManga.html",
+            controller: "mangaController"
+        })
+
+        .state("busca", {
+            url: "/busca",
+            templateUrl: "views/formBusca.html",
+            controller: "FormController"
         })
 
     

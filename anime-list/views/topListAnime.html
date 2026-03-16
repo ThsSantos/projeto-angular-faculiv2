@@ -1,6 +1,11 @@
 <div class="row">
+    <div class="col text-center">
+        <h1>Top animes do momento</h1>
+    </div>
+</div>
+<div class="row">
     <div class="col-12 col-sm-2 col-md-3 mt-1" ng-repeat="anime in animes | limitTo:itensPaginas:pagina*itensPaginas">
-        <div class="card">
+        <div class="card h-100">
             <img class="card-img-top img-thumbnail rounded mx-auto d-block" src="{{anime.images.jpg.image_url}}"
                 alt="Card image cap" style="width: 200px; height: 270px;">
             <div class="card-body">
@@ -11,14 +16,27 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" ng-repeat="genero in anime.genres | limitTo : 2">{{genero.name}}</li>
-                    
+
                 </ul>
-                <a href="#" class="btn btn-primary">Detalhes</a>
-                <a href="#" class="btn btn-primary">+Favoritos</a>
-                <a href="#" class="btn btn-primary">Assitir</a>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary">Detalhes</a>
+                    <a href="#" class="btn btn-primary">+Favoritos</a>
+                </div>
+
             </div>
         </div>
     </div>
     <!-- <button ng-click="pagina = pagina - 1">Anterior</button>
     <button ng-click="pagina = pagina + 1">Próxima</button> -->
+</div>
+<div class="row mt-2 ">
+    <div class="col d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+                <li class="page-item"><button class="page-link" ng-click="previous(pagina+1)">Anterior</button></li>
+                <li class="page-item"><button class="page-link" ng-click="nextPage(pagina+1)">Proximo</button></li>
+            </ul>
+        </nav>
+    </div>
 </div>
