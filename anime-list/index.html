@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt_BR" ng-app="animeList">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bibliotecas de Angular -->
+    <script src="./lib/angular/angular.min.js"></script>
+    <script src="./lib/angular-ui-router/angular-ui-router.min.js"></script>
+
+    <!-- CSS BOOTSTRAP -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <!-- APP -->
+    <script src="app.js"></script>
+
+    <!-- Services -->
+    <script src="services/animeService.js"></script>
+
+    <!-- Controllers -->
+    <script src="controllers/animeController.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div ui-view></div>
+    </div>
+
+    <!-- JS BOOTSTRAP -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-12 col-sm-2 col-md-3 mt-1" ng-repeat="anime in animes | limitTo:itensPaginas:pagina*itensPaginas">
+        <div class="card">
+            <img class="card-img-top img-thumbnail rounded mx-auto d-block" src="{{anime.images.jpg.image_url}}"
+                alt="Card image cap" style="width: 200px; height: 270px;">
+            <div class="card-body">
+                <h5 class="card-title text-center" style="height: 48px;">{{anime.title_english}}</h5>
+                <!-- <p class="card-text" ng-repeat="genero in anime.genres">{{genero.name}}</p> -->
+                <div class="card-header">
+                    Genero
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" ng-repeat="genero in anime.genres | limitTo : 2">{{genero.name}}</li>
+                    
+                </ul>
+                <a href="#" class="btn btn-primary">Detalhes</a>
+                <a href="#" class="btn btn-primary">+Favoritos</a>
+                <a href="#" class="btn btn-primary">Assitir</a>
+            </div>
+        </div>
+    </div>
+    <!-- <button ng-click="pagina = pagina - 1">Anterior</button>
+    <button ng-click="pagina = pagina + 1">Próxima</button> -->
+</div>
