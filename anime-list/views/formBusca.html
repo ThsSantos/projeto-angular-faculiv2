@@ -6,12 +6,121 @@
 <div class="row justify-content-center">
     <div class="col-12 col-sm-4 col-md-6">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" ng-model="buscaInput">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">{{categoria}}</button>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><span class="dropdown-item" ng-model="categoria">teste</span></li>
+                <li ng-click="getCategoria('Anime')"><span class="dropdown-item">Anime</span></li>
+                <li ng-click="getCategoria('Manga')"><span class="dropdown-item">Manga</span></li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-sm-2 col-md-3 mt-1"
+        ng-repeat="obra in obras | filter:buscaInput |limitTo:itensPaginas:pagina*itensPaginas">
+        <div class="card h-100">
+            <img class="card-img-top img-thumbnail rounded mx-auto d-block" src="{{obra.images.jpg.image_url}}"
+                alt="Card image cap" style="width: 200px; height: 270px;">
+            <div class="card-body">
+                <h5 class="card-title text-center" style="height: 48px;">{{obra.title_english}}</h5>
+                <!-- <p class="card-text" ng-repeat="genero in anime.genres">{{genero.name}}</p> -->
+                <div class="card-header">
+                    Genero
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" ng-repeat="genero in obra.genres | limitTo : 2">{{genero.name}}</li>
+
+                </ul>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        ng-click="carregaModal(obra.mal_id)">
+                        Detalhes
+                    </button>
+                    <a href="#" class="btn btn-primary">+Favorito</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <button ng-click="pagina = pagina - 1">Anterior</button>
+    <button ng-click="pagina = pagina + 1">Próxima</button> -->
+</div>
+<div class="row mt-2 ">
+    <div class="col d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+                <li class="page-item"><button class="page-link" ng-click="previous(pagina+1)">Anterior</button></li>
+                <li class="page-item"><button class="page-link" ng-click="nextPage(pagina+1)">Proximo</button></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Modal Anime -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-if="categoria == 'Anime'">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{detalhes.title_english}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-3" style="max-width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{detalhes.images.jpg.image_url}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Sinopse</h5>
+                                <p class="card-text">{{detalhes.synopsis}}</p>
+                                <p class="card-text"><small class="text-muted">Episodios: {{detalhes.episodes}}</small></p>
+                                <p class="card-text"><a href="{{detalhes.trailer.embed_url}}" target="_blank">Trailer</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">+Favoritos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Manga -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-if="categoria == 'Manga'">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{detalhes.title_english}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-3" style="max-width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{detalhes.images.jpg.image_url}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Sinopse</h5>
+                                <p class="card-text">{{detalhes.synopsis}}</p>
+                                <p class="card-text"><small class="text-muted">Volumes: {{detalhes.chapters || "Desconhecido"}}</small></p>
+                                <p class="card-text"><small class="text-muted">Autor: {{detalhes.authors[0].name}}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">+Favoritos</button>
+            </div>
         </div>
     </div>
 </div>

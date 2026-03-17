@@ -5,12 +5,12 @@ $urlRouterProvider.otherwise("/listAnime");
     $stateProvider.state("listAnime", {
         url: "/listAnime",
         templateUrl: "views/topListAnime.html",
-        controller: "AnimeController"
+        controller: "ConteudoController"
     })
         .state("listManga", {
             url: "/topListManga",
             templateUrl: "views/topListManga.html",
-            controller: "mangaController"
+            controller: "ConteudoController"
         })
 
         .state("busca", {
@@ -18,6 +18,13 @@ $urlRouterProvider.otherwise("/listAnime");
             templateUrl: "views/formBusca.html",
             controller: "FormController"
         })
+
+        .state("favoritos", {
+            url: "/favoritos",
+            templateUrl: "views/pageFavoritos.html",
+            controller: "FavoritosController"
+        })
+
 
     
 });
