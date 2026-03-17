@@ -3,6 +3,7 @@
         <h1>Top animes do momento</h1>
     </div>
 </div>
+<!-- Card Anime -->
 <div class="row">
     <div class="col-12 col-sm-2 col-md-3 mt-1"
         ng-repeat="anime in conteudos | limitTo:itensPaginas:pagina*itensPaginas">
@@ -11,7 +12,6 @@
                 alt="Card image cap" style="width: 200px; height: 270px;">
             <div class="card-body">
                 <h5 class="card-title text-center" style="height: 48px;">{{anime.title_english}}</h5>
-                <!-- <p class="card-text" ng-repeat="genero in anime.genres">{{genero.name}}</p> -->
                 <div class="card-header">
                     Genero
                 </div>
@@ -23,7 +23,8 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" ng-click="carregaModal(anime.mal_id)">
                         Detalhes
                     </button>
-                    <button class="btn btn-primary" ng-click="favoritar(anime.mal_id)">+Favorito</button>
+                    <button ng-if="btnFavorito(anime.mal_id)" class="btn btn-primary" ng-click="favoritar(anime.mal_id)">+Favorito</button>
+                    <button ng-if="!btnFavorito(anime.mal_id)" class="btn btn-danger" ng-click="removerFav(anime.mal_id)" data-bs-dismiss="modal">Remover</button>
                 </div>
 
             </div>
@@ -31,6 +32,7 @@
     </div>
 
 </div>
+<!-- Paginação -->
 <div class="row mt-2 ">
     <div class="col d-flex justify-content-center">
         <nav aria-label="Page navigation example">
@@ -70,7 +72,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">+Favoritos</button>
+                <button ng-if="btnFavorito(detalhes.mal_id)" type="button" data-bs-dismiss="modal" class="btn btn-primary" ng-click="favoritar(detalhes.mal_id)">+Favoritos</button>
+                <button ng-if="!btnFavorito(detalhes.mal_id)" data-bs-dismiss="modal" class="btn btn-danger" ng-click="removerFav(detalhes.mal_id)" data-bs-dismiss="modal">Remover</button>
             </div>
         </div>
     </div>

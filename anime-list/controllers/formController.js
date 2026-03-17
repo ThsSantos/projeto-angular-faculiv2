@@ -1,4 +1,4 @@
-angular.module("animeList").controller("FormController", function ($scope, AnimeService, $state) {
+angular.module("animeList").controller("FormController", function ($scope, AnimeService, LocalStorageService, $state) {
     $scope.obras = [];
     $scope.pagina = 0;
     $scope.itensPaginas = 8;
@@ -59,5 +59,52 @@ angular.module("animeList").controller("FormController", function ($scope, Anime
         }
 
     }
+
+     $scope.btnFavorito = function btnFavorito(id) {
+        if ($scope.categoria == "Anime") {
+            if (LocalStorageService.getAnime(id)) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (LocalStorageService.getManga(id)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    }
+
+    $scope.favoritar = function favoritar(id) {
+        if ($scope.categoria == "Anime") {
+            console.log(true);
+            // console.log(id);
+            AnimeService.getAnime(id).then(res => {
+                LocalStorageService.salvarAnime(res.data.data);
+            })
+
+        } else {
+            AnimeService.getManga(id).then(res => {
+                LocalStorageService.salvarManga(res.data.data);
+            })
+        }
+    }
+
+    $scope.removerFav = function revomerFav(id) {
+
+
+        if ($scope.categoria == "Anime") {
+            console.log(id);
+            LocalStorageService.removeFavoritoAnime(id);
+            carregaLayout();
+        } else {
+            console.log(id);
+            LocalStorageService.removeFavoritoManga(id);
+            carregaLayout();
+        }
+    }
+
     carregaAcervo();
 });
