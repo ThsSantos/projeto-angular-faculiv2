@@ -6,7 +6,7 @@ angular.module("animeList").controller("FormController", function ($scope, Anime
     $scope.detalhes = null;
     $scope.categoria = "Anime";
     $scope.getCategoria = function (categoria) {
-        console.log(categoria);
+        // console.log(categoria);
         $scope.categoria = categoria;
         carregaAcervo();
     }
@@ -18,36 +18,36 @@ angular.module("animeList").controller("FormController", function ($scope, Anime
             AnimeService.allAnime().then(res => {
                 $scope.obras = res.data.data;
                 $scope.paginaTotal = Math.ceil($scope.obras.length / 8);
-                console.log($scope.obras);
+                // console.log($scope.obras);
             })
         } else {
             AnimeService.allManga().then(res => {
                 $scope.obras = res.data.data;
-                console.log($scope.obras);
+                // console.log($scope.obras);
             })
         }
     }
 
     $scope.carregaModal = function carregaModal(id) {
         if ($scope.categoria == "Anime") {
-            console.log(true);
+            // console.log(true);
             // console.log(id);
             AnimeService.getAnime(id).then(res => {
                 $scope.detalhes = res.data.data;
-                console.log($scope.detalhes);
+                // console.log($scope.detalhes);
             })
 
         } else {
             AnimeService.getManga(id).then(res => {
                 $scope.detalhes = res.data.data;
-                console.log($scope.detalhes);
-                console.log(id);
+                // console.log($scope.detalhes);
+                // console.log(id);
             })
         }
     }
 
     $scope.nextPage = function nextPage(page) {
-        console.log(page);
+        // console.log(page);
         if (page < $scope.paginaTotal) {
             $scope.pagina++;
         }
@@ -79,7 +79,7 @@ angular.module("animeList").controller("FormController", function ($scope, Anime
 
     $scope.favoritar = function favoritar(id) {
         if ($scope.categoria == "Anime") {
-            console.log(true);
+            // console.log(true);
             // console.log(id);
             AnimeService.getAnime(id).then(res => {
                 LocalStorageService.salvarAnime(res.data.data);
@@ -96,11 +96,11 @@ angular.module("animeList").controller("FormController", function ($scope, Anime
 
 
         if ($scope.categoria == "Anime") {
-            console.log(id);
+            // console.log(id);
             LocalStorageService.removeFavoritoAnime(id);
             carregaLayout();
         } else {
-            console.log(id);
+            // console.log(id);
             LocalStorageService.removeFavoritoManga(id);
             carregaLayout();
         }

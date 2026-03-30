@@ -17,9 +17,11 @@ angular.module("animeList").controller("FavoritosController", function ($scope, 
     function carregaFavoritos() {
         if ($scope.categoria == "Anime") {
             $scope.conteudos = LocalStorageService.getListAnime();
+            $scope.paginaTotal = Math.ceil($scope.conteudos.length / 8);
             // console.log($scope.conteudos);
         } else {
             $scope.conteudos = LocalStorageService.getListManga();
+            $scope.paginaTotal = Math.ceil($scope.conteudos.length / 8);
             // console.log($scope.conteudos);
         }
 
@@ -63,7 +65,7 @@ angular.module("animeList").controller("FavoritosController", function ($scope, 
     $scope.carregaModal = function carregaModal(id) {
 
         // console.log(true);
-        console.log(id);
+        // console.log(id);
 
         if ($scope.categoria == "Anime") {
             $scope.detalhes = LocalStorageService.getAnime(id);
@@ -77,6 +79,21 @@ angular.module("animeList").controller("FavoritosController", function ($scope, 
 
 
 
+
+    }
+    // paginação
+    $scope.nextPage = function nextPage(page) {
+        // console.log(page);
+        if (page < $scope.paginaTotal) {
+            $scope.pagina++;
+        }
+    }
+
+    $scope.previous = function previous(page) {
+        // console.log(page);
+        if (page >= ($scope.pagina + 1) && page > 1) {
+            $scope.pagina--;
+        }
 
     }
 

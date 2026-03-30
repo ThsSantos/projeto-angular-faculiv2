@@ -13,6 +13,14 @@
     </div>
 </div>
 
+<div class="row justify-content-center mt-1">
+    <div class="col-12 col-sm-4 col-md-6">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Buscar" ng-model="buscaInput">
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <!-- table Anime -->
     <div class="col-12 mt-3" ng-if="categoria == 'Anime'">
@@ -27,7 +35,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="anime in conteudos | limitTo:itensPaginas:pagina*itensPaginas | orderBy:'title_english'">
+                <tr ng-repeat="anime in conteudos | filter:buscaInput |limitTo:itensPaginas:pagina*itensPaginas | orderBy:'title_english'">
                     <td>{{anime.title_english}}</td>
                     <td>{{anime.episodes}}</td>
                     <td><button class="btn btn-danger" ng-click="removerFav(anime.mal_id)">Remover</button></td>
@@ -56,7 +64,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="manga in conteudos | limitTo:itensPaginas:pagina*itensPaginas | orderBy:'title_english'">
+                <tr ng-repeat="manga in conteudos | filter:buscaInput | limitTo:itensPaginas:pagina*itensPaginas | orderBy:'title_english'">
                     <td>{{manga.title_english}}</td>
                     <td>{{manga.chapters || "/"}}</td>
                     <td><button class="btn btn-danger" ng-click="removerFav(manga.mal_id)">Remover</button></td>
@@ -74,7 +82,7 @@
     </div>
 </div>
 <!-- Paginação -->
-<div class="row mt-2 ">
+<div class="row mt-2 " ng-if="conteudos.length>8">
     <div class="col d-flex justify-content-center">
         <nav aria-label="Page navigation example">
             <ul class="pagination">

@@ -12,8 +12,8 @@ angular.module("animeList").controller("ConteudoController", function ($scope, A
         AnimeService.listTopAnime().then(res => {
             $scope.conteudos = res.data.data;
             $scope.paginaTotal = Math.ceil($scope.conteudos.length / 8);
-            console.log($scope.paginaTotal);
-            console.log($scope.conteudos);
+            // console.log($scope.paginaTotal);
+            // console.log($scope.conteudos);
         });
     }
 
@@ -21,7 +21,7 @@ angular.module("animeList").controller("ConteudoController", function ($scope, A
         AnimeService.listTopManga().then(res => {
             $scope.conteudos = res.data.data;
             $scope.paginaTotal = Math.ceil($scope.conteudos.length / 8);
-            console.log($scope.paginaTotal);
+            // console.log($scope.paginaTotal);
         });
     }
 
