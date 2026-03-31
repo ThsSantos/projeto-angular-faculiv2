@@ -34,4 +34,4 @@ Atende perfeitamente ao escopo do projeto <br>
 ▶️ Como executar o projeto <br> <br>
 Clone o repositório: <br>
 git clone https://github.com/ThsSantos/projeto-angular-faculiv2.git <br> <br>
-Abra o arquivo index.html no navegador ou utilize uma extensão como Live Server no VS Code. <br>
+Abra o arquivo index.html utilizando uma extensão como Live Server no VS Code. <br>
